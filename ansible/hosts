@@ -1,0 +1,6 @@
+[leaders]
+stack-leader-1
+stack-leader-2
+
+[workers]
+stack-worker-1
