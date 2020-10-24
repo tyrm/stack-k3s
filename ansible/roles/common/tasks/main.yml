@@ -1,0 +1,4 @@
+---
+# tasks file for common
+- name: updates /etc/hosts
+  template: src=hosts.j2 dest=/etc/hosts

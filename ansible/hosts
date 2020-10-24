@@ -1,6 +1,6 @@
 [leaders]
-stack-leader-1
-stack-leader-2
+stack-leader-1 ansible_host=10.1.70.49
+stack-leader-2 ansible_host=10.1.70.48
 
 [workers]
-stack-worker-1
+stack-worker-1 ansible_host=10.1.70.51
