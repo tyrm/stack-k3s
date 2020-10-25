@@ -1,2 +1,3 @@
 ---
 # defaults file for repmgr
+repmgr_node_name: "{{ inventory_hostname }}"
