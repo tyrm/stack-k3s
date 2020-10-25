@@ -1,4 +1,8 @@
 node_id={{ repmgr_node_id }}
 node_name='{{ repmgr_node_name }}'
+{% if repmgr_conninfo is defined %}
 conninfo='{{ repmgr_conninfo }}'
-data_directory='/var/lib/postgresql/12/main'
+{% endif %}
+{% if repmgr_data_directory is defined %}
+data_directory='{{ repmgr_data_directory }}'
+{% endif %}

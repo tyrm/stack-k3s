@@ -1,2 +1,6 @@
 ---
 keepalived_unicast_peer: "{{ hostvars['stack-database-2']['ansible_host'] }}"
+
+repmgr_conninfo: "host=stack-database-1 user=repmgr dbname=repmgr password={{ repmgr_user_password }} connect_timeout=2"
+repmgr_data_directory: /var/lib/postgresql/12/main
+repmgr_node_id: 1

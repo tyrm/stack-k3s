@@ -1,8 +1,16 @@
 ---
-# tasks file for database
+# install postgres
 - name: install "postgresql" package
   apt:
     name: postgresql
+
+# configure postgres
+- name: set listen_addresses
+  lineinfile:
+    dest: /etc/postgresql/12/main/postgresql.conf
+    regexp: '^listen_addresses = .+'
+    line: "listen_addresses = '*'"
+    state: present
 
 - name: set max_wal_senders
   lineinfile:
@@ -45,3 +53,39 @@
     regexp: '^archive_command = .+'
     line: "archive_command = '/bin/true'"
     state: present
+
+- name: update /etc/postgresql/12/main/pg_hba.conf
+  template: src=pg_hba.conf.j2 dest=/etc/postgresql/12/main/pg_hba.conf
+
+# place keys
+- name: Create a directory if it does not exist
+  file:
+    path: /var/lib/postgresql/.ssh
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: '0750'
+
+- name: update /var/lib/postgresql/.ssh/id_rsa
+  template:
+    src: id_rsa.j2
+    dest: /var/lib/postgresql/.ssh/id_rsa
+    owner: postgres
+    group: postgres
+    mode: '0600'
+
+- name: update /var/lib/postgresql/.ssh/id_rsa.pub
+  template:
+    src: id_rsa.pub.j2
+    dest: /var/lib/postgresql/.ssh/id_rsa.pub
+    owner: postgres
+    group: postgres
+    mode: '0640'
+
+- name: update /var/lib/postgresql/.ssh/authorized_keys
+  template:
+    src: id_rsa.pub.j2
+    dest: /var/lib/postgresql/.ssh/authorized_keys
+    owner: postgres
+    group: postgres
+    mode: '0640'

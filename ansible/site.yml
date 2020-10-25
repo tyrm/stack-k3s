@@ -13,4 +13,4 @@
   become: yes
   roles:
     - repmgr
-    - database
+    - postgres

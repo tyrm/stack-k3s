@@ -3,3 +3,6 @@
 - name: install "repmgr" package
   apt:
     name: repmgr
+
+- name: update /etc/repmgr.conf
+  template: src=repmgr.conf.j2 dest=/etc/repmgr.conf
