@@ -1,0 +1,5 @@
+---
+# tasks file for database
+- name: install "postgresql" package
+  apt:
+    name: postgresql

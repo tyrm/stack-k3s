@@ -1,4 +1,12 @@
 ---
 # tasks file for common
+- name: change hostname to myserver
+  hostname:
+    name: "{{ inventory_hostname }}"
+
 - name: updates /etc/hosts
   template: src=hosts.j2 dest=/etc/hosts
+
+- name: install "prometheus-node-exporter" package
+  apt:
+    name: prometheus-node-exporter

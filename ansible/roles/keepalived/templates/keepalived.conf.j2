@@ -1,0 +1,28 @@
+global_defs {
+    vrrp_version 3
+}
+
+vrrp_instance VI_1 {
+    interface                  eth0
+    priority                   {{ keepalived_priority }}
+    virtual_router_id          {{ keepalived_virtual_router_id }}
+    advert_int                 1
+    accept
+    garp_master_refresh        5
+    garp_master_refresh_repeat 1
+    unicast_src_ip             {{ keepalived_unicast_src_ip }}
+
+    unicast_peer {
+        {{ keepalived_unicast_peer }}
+    }
+
+    virtual_ipaddress {
+        {{ keepalived_virtual_ipaddress }}
+    }
+
+    authentication {
+          auth_type PASS
+          auth_pass {{ keepalived_auth_pass }}
+    }
+
+}

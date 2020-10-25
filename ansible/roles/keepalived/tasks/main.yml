@@ -1,0 +1,15 @@
+---
+# tasks file for keepalived
+- name: install "keepalived" package
+  apt:
+    name: keepalived
+
+- name: updates /etc/keepalived/keepalived.conf
+  template: src=keepalived.conf.j2 dest=/etc/keepalived/keepalived.conf
+  register: keepalived_conf
+
+- name: restart keepalived service
+  service:
+    name: keepalived
+    state: restarted
+  when: keepalived_conf.changed

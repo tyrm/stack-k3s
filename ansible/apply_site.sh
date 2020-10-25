@@ -13,4 +13,4 @@ else
   pip install ansible
 fi
 
-ansible-playbook -i hosts site.yaml --ask-become-pass
+ansible-playbook -i hosts --ask-become-pass --vault-id stack@~/.ansible/password_file site.yml

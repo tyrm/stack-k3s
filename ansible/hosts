@@ -1,6 +1,18 @@
+stack-witness-1 ansible_host=10.1.70.43
+
+[databases]
+stack-database-1 ansible_host=10.1.70.41
+stack-database-2 ansible_host=10.1.70.42
+
 [leaders]
 stack-leader-1 ansible_host=10.1.70.49
 stack-leader-2 ansible_host=10.1.70.48
 
 [workers]
 stack-worker-1 ansible_host=10.1.70.51
+stack-worker-2 ansible_host=10.1.70.52
+stack-worker-3 ansible_host=10.1.70.53
+
+[k3snodes:children]
+leaders
+workers

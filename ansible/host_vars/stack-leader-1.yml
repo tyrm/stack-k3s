@@ -1,0 +1,2 @@
+---
+keepalived_unicast_peer: "{{ hostvars['stack-leader-2']['ansible_host'] }}"

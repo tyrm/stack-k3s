@@ -1,0 +1,6 @@
+---
+# defaults file for keepalived
+keepalived_priority: 100
+keepalived_virtual_router_id: 51
+
+keepalived_unicast_src_ip: "{{ ansible_default_ipv4.address }}"

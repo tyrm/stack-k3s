@@ -1,0 +1,5 @@
+---
+# tasks file for repmgr
+- name: install "repmgr" package
+  apt:
+    name: repmgr

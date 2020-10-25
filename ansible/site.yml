@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  roles:
+    - common
+
+- hosts: [leaders, databases]
+  become: yes
+  roles:
+    - keepalived
+
+- hosts: databases
+  become: yes
+  roles:
+    - repmgr
+    - database
