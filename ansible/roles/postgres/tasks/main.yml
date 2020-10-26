@@ -5,54 +5,8 @@
     name: postgresql
 
 # configure postgres
-- name: set listen_addresses
-  lineinfile:
-    dest: /etc/postgresql/12/main/postgresql.conf
-    regexp: '^listen_addresses = .+'
-    line: "listen_addresses = '*'"
-    state: present
-
-- name: set max_wal_senders
-  lineinfile:
-    dest: /etc/postgresql/12/main/postgresql.conf
-    regexp: '^max_wal_senders = .+'
-    line: 'max_wal_senders = 10'
-    state: present
-
-- name: set max_replication_slots
-  lineinfile:
-    dest: /etc/postgresql/12/main/postgresql.conf
-    regexp: '^max_replication_slots = .+'
-    line: 'max_replication_slots = 10'
-    state: present
-
-- name: set wal_level
-  lineinfile:
-    dest: /etc/postgresql/12/main/postgresql.conf
-    regexp: '^wal_level = .+'
-    line: "wal_level = 'hot_standby'"
-    state: present
-
-- name: set hot_standby
-  lineinfile:
-    dest: /etc/postgresql/12/main/postgresql.conf
-    regexp: '^hot_standby = .+'
-    line: 'hot_standby = on'
-    state: present
-
-- name: set archive_mode
-  lineinfile:
-    dest: /etc/postgresql/12/main/postgresql.conf
-    regexp: '^archive_mode = .+'
-    line: 'archive_mode = on'
-    state: present
-
-- name: set archive_command
-  lineinfile:
-    dest: /etc/postgresql/12/main/postgresql.conf
-    regexp: '^archive_command = .+'
-    line: "archive_command = '/bin/true'"
-    state: present
+- name: update /etc/postgresql/12/main/postgresql.conf
+  template: src=postgresql.conf.j2 dest=/etc/postgresql/12/main/postgresql.conf
 
 - name: update /etc/postgresql/12/main/pg_hba.conf
   template: src=pg_hba.conf.j2 dest=/etc/postgresql/12/main/pg_hba.conf

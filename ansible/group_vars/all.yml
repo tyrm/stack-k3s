@@ -1,0 +1,18 @@
+---
+postgresql_listen_addresses: "*"
+postgresql_max_replication_slots: 10
+postgresql_max_wal_senders: 10
+postgresql_wal_level: replica
+postgresql_hot_standby: "on"
+postgresql_archive_mode: "on"
+postgresql_archive_command: "/bin/bash"
+
+repmgr_conninfo: "host={{ inventory_hostname }} user=repmgr dbname=repmgr password={{ repmgr_user_password }} connect_timeout=2"
+repmgr_data_directory: /var/lib/postgresql/12/main
+repmgr_user_password: !vault |
+  $ANSIBLE_VAULT;1.2;AES256;stack
+  31656562393263633230393838343066663634386566316639373731356131356633646133393632
+  6436623334393836633564303163306566373130356333630a663336376430663930626462633733
+  38343435656636343565393238626138613534393461383631373363353731626662633263326431
+  3561373538373762610a616630653761633037396163653265633732313530643866333365336562
+  63653066653937643261613135386565633333373765656238666366356630306135

@@ -9,7 +9,7 @@
   roles:
     - keepalived
 
-- hosts: databases
+- hosts: [stack-witness-1, databases]
   become: yes
   roles:
     - repmgr
