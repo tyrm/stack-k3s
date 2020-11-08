@@ -1,4 +1,6 @@
 ---
+common_db_live: "stack-database-1"
+
 postgresql_listen_addresses: "*"
 postgresql_max_replication_slots: 10
 postgresql_max_wal_senders: 10

@@ -4,7 +4,7 @@
   apt:
     name: keepalived
 
-- name: updates /etc/keepalived/keepalived.conf
+- name: update /etc/keepalived/keepalived.conf
   template: src=keepalived.conf.j2 dest=/etc/keepalived/keepalived.conf
   register: keepalived_conf
 

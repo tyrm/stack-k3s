@@ -1,0 +1,34 @@
+---
+- name: install "python3-pip" package
+  apt:
+    name: python3-pip
+
+- name: install "python3-virtualenv" package
+  apt:
+    name: python3-virtualenv
+
+- name: Checkout latest fan control code
+  git:
+    repo: 'https://github.com/tyrm/python-fan-control.git'
+    dest: /opt/fan-control
+
+- name: Install requirements
+  pip:
+    requirements: /opt/fan-control/requirements.txt
+    virtualenv: /opt/fan-control/venv
+    virtualenv_python: python3
+
+- name: update /etc/systemd/system/fancontrol.service
+  template: src=fancontrol.service.j2 dest=/etc/systemd/system/fancontrol.service
+  register: systemd_fancontrol
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: yes
+  when: systemd_fancontrol.changed
+
+- name: Make sure fancontrol service is running
+  systemd:
+    state: started
+    enabled: yes
+    name: fancontrol

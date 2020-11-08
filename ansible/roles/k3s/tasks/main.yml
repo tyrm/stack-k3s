@@ -1,0 +1,9 @@
+---
+
+- name: update /boot/firmware/cmdline.txt
+  template:
+    src: cmdline.txt.j2
+    dest: /boot/firmware/cmdline.txt
+    owner: root
+    group: root
+    mode: '0755'

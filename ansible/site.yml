@@ -3,8 +3,9 @@
   become: yes
   roles:
     - common
+    - fancontrol
 
-- hosts: [leaders, databases]
+- hosts: leaders
   become: yes
   roles:
     - keepalived
@@ -14,3 +15,8 @@
   roles:
     - repmgr
     - postgres
+
+- hosts: [leaders, workers]
+  become: yes
+  roles:
+    - k3s

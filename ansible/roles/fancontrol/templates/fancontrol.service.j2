@@ -1,0 +1,11 @@
+[Unit]
+Description=Stack Fan Controller
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/fan-control/venv/bin/python /opt/fan-control/fancontrol.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

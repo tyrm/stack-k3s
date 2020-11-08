@@ -4,6 +4,8 @@
 10.1.70.61  backyard
 
 10.1.70.50  stack-leader
+{{ hostvars[common_db_live]['ansible_host'] }}  stack-database
+
 {% for item in groups['all'] %}
 {{ hostvars[item]['ansible_host'] }}  {{ item }}
 {% endfor %}
