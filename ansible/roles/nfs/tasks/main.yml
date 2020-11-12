@@ -1,0 +1,20 @@
+---
+- name: Create /nfs if it does not exist
+  file:
+    path: /nfs
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: install "nfs-common" package
+  apt:
+    name: nfs-common
+
+- name: Mount an NFS volume
+  ansible.posix.mount:
+    src: park:/volume2/stack
+    path: /nfs
+    opts: rw,sync,hard,intr
+    state: present
+    fstype: nfs
