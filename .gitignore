@@ -1,1 +1,9 @@
+# Python Stuffs
 venv
+
+# C Stuffs
+*.eeprom
+*.elf
+*.hex
+*.map
+*.o
