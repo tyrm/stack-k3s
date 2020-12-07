@@ -138,6 +138,10 @@ flash_eeprom: $(TARGET).eeprom
 avrdude_terminal:
 	$(AVRDUDE) -c $(PROGRAMMER_TYPE) -p $(MCU) $(PROGRAMMER_ARGS) -nt
 
+flash_avrisp: PROGRAMMER_TYPE = avrispmkII
+flash_avrisp: PROGRAMMER_ARGS =  # USBasp works with no further arguments
+flash_avrisp: flash
+
 ##########------------------------------------------------------##########
 ##########       Fuse settings and suitable defaults            ##########
 ##########------------------------------------------------------##########

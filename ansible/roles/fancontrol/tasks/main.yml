@@ -11,6 +11,7 @@
   git:
     repo: 'https://github.com/tyrm/python-fan-control.git'
     dest: /opt/fan-control
+  register: git_fancontrol
 
 - name: Install requirements
   pip:
@@ -32,3 +33,9 @@
     state: started
     enabled: yes
     name: fancontrol
+
+- name: restart service
+  service:
+    name: fancontrol
+    state: restarted
+  when: git_fancontrol.changed
